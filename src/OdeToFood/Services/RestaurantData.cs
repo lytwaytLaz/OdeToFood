@@ -9,13 +9,25 @@ namespace OdeToFood.Services
     {
         IEnumerable<Restaurant> GetAll();
         Restaurant Get(int id);
+        Restaurant Add(Restaurant newRestaurant);
     }
+
     public class InMemoryRestaurantData : IRestaurantData
     {
         // we only use List temporarily before we create a DB
         // List is not thread safe so should be avoided for webb projects
         // that need to handle multiple users
-        List<Restaurant> _restaurants;
+        static List<Restaurant> _restaurants;
+
+        public InMemoryRestaurantData()
+        {
+            _restaurants = new List<Restaurant>
+            {
+                new Restaurant { Id = 1, Name = "The House of Kobe" },
+                new Restaurant {Id = 2, Name = "LJ's and the Kat" },
+                new Restaurant { Id = 3, Name = "King's Contrival" }
+            };
+        }
 
         public IEnumerable<Restaurant> GetAll()
         {
@@ -27,16 +39,12 @@ namespace OdeToFood.Services
             return _restaurants.FirstOrDefault(r => r.Id == id);
         }
 
-        public InMemoryRestaurantData()
+        public Restaurant Add(Restaurant newRestaurant)
         {
-            _restaurants = new List<Restaurant>
-            {
-                new Restaurant { Id = 1, Name = "The House of Kobe" },
-                new Restaurant {Id = 2, Name = "LJ's and the Kat" },
-                new Restaurant { Id = 3, Name = "King's Contrival" }
-              
-            };
+            newRestaurant.Id = _restaurants.Max(r => r.Id) + 1;
+            _restaurants.Add(newRestaurant);
 
+            return newRestaurant;
         }
     }
 }
