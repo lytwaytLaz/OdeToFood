@@ -19,7 +19,7 @@ namespace OdeToFood.Services
         // that need to handle multiple users
         static List<Restaurant> _restaurants;
 
-        public InMemoryRestaurantData()
+        static InMemoryRestaurantData()
         {
             _restaurants = new List<Restaurant>
             {
