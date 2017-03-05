@@ -1,7 +1,7 @@
 ﻿@model OdeToFood.ViewModels.HomePageViewModel
 
 @{
-    ViewData["Title"] = "Home"; // could be ViewBag.Title but this is somewhat more efiicient
+    ViewData["Title"] = "Home"; // could be ViewBag.Title but this is somewhat more efficient
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,14 +10,16 @@
     @foreach (var restaurant in Model.Restaurants)
     {
         <tr>
-            <td>
-                <a href="/home/details/@restaurant.Id">Details</a>
-                @Html.ActionLink("View", "Details", new { id = restaurant.Id })
-            </td>
             <td>@restaurant.Name</td>
+            <td>
+                <a @*asp-controller="Home" NOT NEEDED since page rendered from HomeController*@ asp-action="Details" asp-route-id="@restaurant.Id">Detail</a>
+                <a asp-action="Edit" asp-route-id="@restaurant.Id">Edit</a>
+            </td>
         </tr>
     }
 </table>
+
+<a asp-action="Create">Create</a>
 
 @section footer{
     <h3>@Model.CurrentMessage</h3>

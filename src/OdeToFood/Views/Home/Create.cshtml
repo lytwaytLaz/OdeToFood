@@ -1,5 +1,4 @@
-﻿@using OdeToFood.Entities
-@model Restaurant
+﻿@model Restaurant
 
 @{ 
     ViewData["Title"] = "Create";
@@ -15,6 +14,7 @@
         @using (Html.BeginForm())
         {
             <div>
+                <label asp-for="Name"></label>
                 @Html.LabelFor(m => m.Name)
                 @Html.EditorFor(m => m.Name)
                 @Html.ValidationMessageFor(m => m.Name)
