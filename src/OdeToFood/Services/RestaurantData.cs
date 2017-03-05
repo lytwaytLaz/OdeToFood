@@ -12,6 +12,33 @@ namespace OdeToFood.Services
         Restaurant Add(Restaurant newRestaurant);
     }
 
+    public class SqlRestaurantData : IRestaurantData
+    {
+        private OdeToFoodDBContext _context;
+
+        public SqlRestaurantData(OdeToFoodDBContext context)
+        {
+            _context = context;
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            _context.Add(newRestaurant);
+            _context.SaveChanges();
+            return newRestaurant;
+        }
+
+        public Restaurant Get(int id)
+        {
+            return _context.Restaurants.FirstOrDefault(r => r.Id == id);
+        }
+
+        public IEnumerable<Restaurant> GetAll()
+        {
+            return _context.Restaurants;
+        }
+    }
+
     public class InMemoryRestaurantData : IRestaurantData
     {
         // we only use List temporarily before we create a DB
@@ -28,6 +55,8 @@ namespace OdeToFood.Services
                 new Restaurant { Id = 3, Name = "King's Contrival" }
             };
         }
+
+        
 
         public IEnumerable<Restaurant> GetAll()
         {
