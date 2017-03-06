@@ -61,7 +61,7 @@ namespace OdeToFood.Controllers
                 restaurant.Name = model.Name;
                 _restaurantData.Commit();
                 return RedirectToAction("Details", new { id = restaurant.Id });
-            }
+            }       
 
             return View(restaurant);
         }
