@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Home"; // could be ViewBag.Title but this is somewhat more efficient
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Welcome!</h1>
@@ -17,7 +16,7 @@
     <a asp-action="Create">Create</a>
 </div>
 
-@section footer{
+@*@section footer{
     <h3>@Model.CurrentMessage</h3>
-}
+}*@
 

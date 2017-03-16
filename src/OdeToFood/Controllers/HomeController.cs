@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OdeToFood.Entities;
 using OdeToFood.Services;
 using OdeToFood.ViewModels;
@@ -20,7 +21,7 @@ namespace OdeToFood.Controllers
         {
             var model = new HomePageViewModel();
             model.Restaurants = _restaurantData.GetAll();
-            model.CurrentMessage = _greeter.GetGreeting();
+            //model.CurrentMessage = _greeter.GetGreeting();
 
             return View(model);
         }
