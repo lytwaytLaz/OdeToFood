@@ -65,13 +65,9 @@ namespace OdeToFood
             }
 
             app.UseFileServer();
-
+            app.UseNodeModules(env.ContentRootPath);
             app.UseIdentity();
-
             app.UseMvc(ConfigureRoutes);
-
-            app.Run(context => context.Response.WriteAsync("Not found"));
-
         }
 
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
